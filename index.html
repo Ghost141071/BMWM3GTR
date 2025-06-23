@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW M3 GTR - Легенда NFS Most Wanted</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066b1;
+            --secondary: #ffffff;
+            --accent: #e6a300;
+            --dark: #121212;
+            --gray: #2a2a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            padding: 30px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow: 0 0 10px rgba(0, 102, 177, 0.7);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 102, 177, 0.3);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            margin-left: 15px;
+        }
+        
+        .btn-accent:hover {
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item-overlay h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .specs {
+            background-color: var(--gray);
+            padding: 80px 0;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .spec-item {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .spec-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .spec-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .spec-item p {
+            opacity: 0.8;
+        }
+        
+        footer {
+            background-color: #000;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: var(--secondary);
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            
+            .btn-accent {
+                margin-left: 0;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="img\1.jpg" alt="BMW Logo">
+                    <span class="logo-text">M3 GTR</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">История</a>
+                    <a href="#gallery">Галерея</a>
+                    <a href="#specs">Характеристики</a>
+                    <a href="#legacy">Наследие</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>BMW M3 GTR</h1>
+                <p>Легендарный автомобиль из Need for Speed: Most Wanted, ставший символом уличных гонок и преследований.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn">Узнать историю</a>
+                    <a href="#gallery" class="btn btn-accent">Галерея</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">История Легенды</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Рождение Иконы</h3>
+                    <p>BMW M3 GTR - специальная гоночная версия знаменитого M3, созданная для участия в American Le Mans Series в 2001 году. Этот автомобиль был разработан, чтобы конкурировать с Porsche 911 GT3 в классе GT.</p>
+                    <p>В отличие от серийных M3 с рядными шестицилиндровыми двигателями, M3 GTR получил V8 объемом 4.0 литра, выдающий около 450 л.с. Это решение было принято для улучшения надежности на длинных дистанциях.</p>
+                </div>
+                <div class="about-image">
+                    <img src="img\2.jpg" alt="BMW M3 GTR Racing">
+                </div>
+            </div>
+            <div class="about-content reverse">
+                <div class="about-image">
+                    <img src="img\3.jpg" alt="BMW M3 GTR NFS Most Wanted">
+                </div>
+                <div class="about-text">
+                    <h3>Звезда Need for Speed</h3>
+                    <p>В 2005 году BMW M3 GTR стал центральным автомобилем в культовой игре Need for Speed: Most Wanted. Именно за рулем серебристо-голубого M3 GTR с номером "#1" главный герой противостоит полиции и другим уличным гонщикам.</p>
+                    <p>Дизайн автомобиля в игре был слегка изменен по сравнению с реальным прототипом - добавлены агрессивные воздухозаборники, изменен спойлер и колесные диски. Этот образ стал одним из самых узнаваемых в истории видеоигр.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Галерея</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="img\4.jpeg" alt="BMW M3 GTR Front">
+                    <div class="gallery-item-overlay">
+                        <h3>Гоночная Версия</h3>
+                        <p>Реальный M3 GTR в гонках ALMS</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img\5.jpg" alt="BMW M3 GTR NFS">
+                    <div class="gallery-item-overlay">
+                        <h3>NFS Most Wanted</h3>
+                        <p>Легендарный дизайн из игры</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img\6.jpg" alt="BMW M3 GTR Interior">
+                    <div class="gallery-item-overlay">
+                        <h3>Салон</h3>
+                        <p>Минималистичный гоночный интерьер</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img\8.jpg" alt="BMW M3 GTR Side">
+                    <div class="gallery-item-overlay">
+                        <h3>Боковой Вид</h3>
+                        <p>Агрессивные линии кузова</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img\7.jpg" alt="BMW M3 GTR Rear">
+                    <div class="gallery-item-overlay">
+                        <h3>Задняя Часть</h3>
+                        <p>Массивный диффузор и спойлер</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img\9.jpg" alt="BMW M3 GTR Action">
+                    <div class="gallery-item-overlay">
+                        <h3>В Движении</h3>
+                        <p>M3 GTR на трассе</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="specs">
+        <div class="container">
+            <h2 class="section-title">Технические Характеристики</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h3>Двигатель</h3>
+                    <p>V8 4.0L (3997 см³)</p>
+                    <p>4 клапана на цилиндр</p>
+                    <p>~450 л.с. @ 7500 об/мин</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Трансмиссия</h3>
+                    <p>6-ступенчатая секвентальная КПП</p>
+                    <p>Задний привод</p>
+                    <p>Механический дифференциал повышенного трения</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Ходовая</h3>
+                    <p>Вес: ~1200 кг</p>
+                    <p>Тормоза: карбон-керамические диски</p>
+                    <p>Подвеска: независимая на двойных поперечных рычагах</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Производительность</h3>
+                    <p>0-100 км/ч: ~3.5 сек</p>
+                    <p>Макс. скорость: ~300 км/ч</p>
+                    <p>Крутящий момент: ~500 Н·м</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="legacy">
+        <div class="container">
+            <h2 class="section-title">Наследие</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Культовый Статус</h3>
+                    <p>BMW M3 GTR из Need for Speed: Most Wanted стал одним из самых узнаваемых виртуальных автомобилей в истории. Его дизайн, звук двигателя и роль в игре сделали его объектом поклонения для фанатов по всему миру.</p>
+                    <p>В 2021 году BMW выпустила ограниченную серию M4 GTS с ливреей, вдохновленной M3 GTR из NFS, что стало данью уважения к культовому статусу автомобиля.</p>
+                </div>
+                <div class="about-image">
+                    <img src="img\10.jpg" alt="BMW M3 GTR Legacy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">BMW M3 GTR</div>
+            <div class="footer-links">
+                <a href="#about">История</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#specs">Характеристики</a>
+                <a href="#legacy">Наследие</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                © 2023 BMW M3 GTR Tribute. Неофициальный фан-сайт. Все права на изображения принадлежат их владельцам.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
